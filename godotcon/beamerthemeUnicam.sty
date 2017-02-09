@@ -1,0 +1,165 @@
+% Variables
+\def\author#1{\gdef\@theauthor{#1}}
+\def\university#1{\gdef\@theuniversity{#1}}
+\def\school#1{\gdef\@theschool{#1}}
+\def\course#1{\gdef\@thecourse{#1}}
+\def\advisor#1{\gdef\@theadvisor{#1}}
+\def\secondadvisor#1{\gdef\@thesecondadvisor{#1}}
+\global\let\@thesecondadvisor\@empty
+\def\thirdadvisor#1{\gdef\@thethirdadvisor{#1}}
+\global\let\@thethirdadvisor\@empty
+\def\academicyear#1{\gdef\@theacademicyear{#1}}
+\def\matricola#1{\gdef\@thematricola{#1}}
+\def\title#1{\gdef\@thetitle{#1}}
+\def\subtitle#1{\gdef\@thesubtitle{#1}}
+\def\deliverabletype#1{\gdef\@thedeliverabletype{#1}}
+\def\deliverableno#1{\gdef\@thedeliverableno{#1}}
+\def\naturedeliverable#1{\gdef\@thenaturedeliverable{#1}}
+\def\disseminationlevel#1{\gdef\@thedisseminationlevel{#1}}
+\def\internalno#1{\gdef\@theinternalno{#1}}
+\def\contractualdeliverydate#1{\gdef\@thecontractualdeliverydate{#1}}
+\def\actualdeliverydate#1{\gdef\@theactualdeliverydate{#1}}
+\def\contributingwp#1{\gdef\@thecontributingwp{#1}}
+\def\editors#1{\gdef\@theeditors{#1}}
+\def\reviewers#1{\gdef\@thereviewers{#1}}
+\def\@theauthors{}
+\def\@thetitle{}
+\def\@thesubtitle{}
+
+% Background color (headline and footline)
+\definecolor{schoolbgcolor}{rgb}{0,0.4,0}
+\definecolor{schoolfgcolor}{rgb}{1,1,1}
+% Beamer mode
+\mode<presentation>
+\usetheme{Dresden}
+\usecolortheme{beaver}
+% Custom color
+\setbeamercolor*{title}{fg=schoolbgcolor,bg=schoolfgcolor}
+\setbeamercolor*{palette
+  secondary}{use=structure,fg=schoolbgcolor,bg=white}
+\setbeamercolor*{palette
+  tertiary}{use=structure,fg=schoolfgcolor,bg=schoolbgcolor}
+\setbeamercolor*{frametitle}{use=structure,fg=schoolbgcolor,bg=white}
+\setbeamercolor*{item}{fg=schoolbgcolor}
+% TOC
+\setbeamertemplate{sections/subsections in toc}[ball]%[ball unnumbered]%[square]
+% Remove navigation symbols
+\setbeamertemplate{navigation symbols}{}
+% Show only section in headline
+\setbeamertemplate{headline}
+{%
+  \begin{beamercolorbox}{section in head/foot}
+  \vskip2pt\insertsectionnavigationhorizontal{\textwidth}{}{}\vskip2pt
+  \end{beamercolorbox}
+  \ifcase \thesubsection
+    \def\headlinesection{}
+  \else
+    \ifcase \thesubsubsection
+      \def\headlinesection{}%\insertsubsection}
+    \else
+      \def\headlinesection{}%\insertsection\space-\space\insertsubsection}
+    \fi
+  \fi  
+  \begin{beamercolorbox}[colsep=1.5pt]{middle separation line head}
+  \end{beamercolorbox}
+  \begin{beamercolorbox}[ht=2.5ex,dp=1.125ex,%
+    leftskip=.3cm,rightskip=.3cm plus1fil]{subsection in head/foot}
+    \usebeamerfont{subsection in head/foot}\headlinesection
+  \end{beamercolorbox}%
+}
+% Show student name, university and advisor in footline
+\setbeamertemplate{footline}
+{%
+  \begin{beamercolorbox}[leftskip=.3cm,rightskip=.3cm]{section in head/foot}
+  \hspace{1cm}\vskip2pt\@thetitle \hfill \@theauthor\vskip2pt
+  \end{beamercolorbox}
+}
+
+% Custom title page
+\defbeamertemplate*{title page}{customized}[1][]
+{
+\vspace{-0.5cm}
+\begin{center}
+% Intestazione
+  {\rmfamily \bfseries \@theuniversity \par}%
+  \vspace{0.1cm}%
+  \hrule%
+  \vspace{0.1cm}%
+  {\rmfamily \color{schoolbgcolor} \tiny \scshape \@theschool \par}%
+  \vspace{0.1cm}%
+  {\rmfamily \small \@thecourse \par}%
+% Logo
+  \vspace{0.5cm}%
+  {\rmfamily \Large \bfseries Real-time Online Multiplayer \\ with \par}%
+  \vspace{1cm}
+  \ifx\@thesecondadvisor\@empty
+    \includegraphics[width=7cm]{img/logo}\par%
+  \else
+    \includegraphics[width=9cm]{img/logo}\par%
+  \fi
+  \vspace{2cm}%
+% Laureando e Relatore
+  \vspace{\stretch{7}}%
+  {\bfseries \footnotesize by \@theauthor \hfill \par}%
+  \vspace{0.1cm}
+% Secondo advisor se esiste
+  \ifx\@thesecondadvisor\@empty
+  \relax
+  \else
+  \vspace{\stretch{7}}
+  {\hfill \scriptsize Correlatore \par}%
+  {\bfseries \footnotesize \hfill \@thesecondadvisor \par}%
+  \fi
+% Terzo advisor se esiste
+  \ifx\@thethirdadvisor\@empty
+  \relax
+  \else
+  \vspace{0.1cm}
+  \vspace{\stretch{7}}
+  {\hfill \scriptsize Secondo Correlatore \par}%
+  {\bfseries \footnotesize \hfill \@thethirdadvisor \par}%
+  \fi
+% Anno Accademico
+  \vspace{0.2cm}
+  \vspace*{\stretch{7}}%
+  \hrule%
+  \vspace{0.1cm}%
+  {\tiny \@theacademicyear}%
+\end{center}
+
+}
+
+% No heading environment
+\makeatletter
+    \newenvironment{nofoot}{
+      %\setbeamercolor*{palette
+      %  tertiary}{use=structure,fg=darkgreen,bg=darkgreen}
+      \setbeamertemplate{footline}
+      {
+        \begin{beamercolorbox}[ht=3.5ex,leftskip=.3cm,rightskip=.3cm]{section in head/foot}
+          \space
+        \end{beamercolorbox}
+      }
+    }{}
+\makeatother
+
+% No heading environment
+\makeatletter
+    \newenvironment{nohead}{
+      %\setbeamercolor*{palette
+      %  tertiary}{use=structure,fg=darkgreen,bg=darkgreen}
+      \setbeamertemplate{headline}
+      {
+        \begin{beamercolorbox}[ht=3ex,dp=1.125ex,
+          leftskip=.3cm,rightskip=.3cm plus1fil]{section in head/foot}
+          \space
+        \end{beamercolorbox}
+        \begin{beamercolorbox}[colsep=1.5pt]{middle separation line head}
+        \end{beamercolorbox}
+        \begin{beamercolorbox}[ht=2.5ex,dp=1.125ex,
+          leftskip=.3cm,rightskip=.3cm plus1fil]{subsection in head/foot}
+          \usebeamerfont{subsection in head/foot}\space
+        \end{beamercolorbox}%
+      }
+    }{}
+\makeatother

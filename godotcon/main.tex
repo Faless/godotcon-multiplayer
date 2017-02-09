@@ -1,0 +1,111 @@
+\documentclass{beamer}
+\usepackage[T1]{fontenc}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english,italian,icelandic]{babel}
+\usepackage{CJKutf8}
+%\usepackage[italian]{babel}
+
+\usetheme{Unicam}
+
+\usepackage{listings}
+
+\lstset{ %
+    basicstyle=\tiny\ttfamily,
+    frame=single,
+    language=Python,
+    commentstyle=\itshape\color{green!40!black}
+}
+
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{graphicx}
+\graphicspath{{img/}}
+\usepackage{caption}
+\usepackage{multicol}
+\captionsetup{
+  font=scriptsize,
+  labelfont=scriptsize
+}
+
+\author{fales}%
+\title{Real-time Online Multiplayer with Godot Engine}
+\university{}%
+\school{}%
+\course{}%
+\academicyear{February, 2017}%
+\date{\today}
+\definecolor{schoolbgcolor}{HTML}{D71921}
+\definecolor{schoolfgcolor}{HTML}{FFFFFF}
+
+\newcommand{\tlink}[3] {
+ \href{#1}{\textbf{#3}}
+
+ \href{#1}{#2}
+}
+
+\newcommand{\slink}[2] {
+ \href{#1}{#1}
+
+ \href{#1}{\footnotesize{#2}}
+}
+
+\begin{document}
+
+\begin{nohead}
+  % Frontespizio
+  \begin{nofoot}
+  \frame{\titlepage}
+  \end{nofoot}
+
+  % Table of content
+  \begin{frame}{}
+    \begin{multicols}{2}
+      \setcounter{tocdepth}{2}
+      \tableofcontents
+    \end{multicols}
+  \end{frame}
+\end{nohead}
+
+\section{Introduction}
+\subsection{Goals}
+\input{slides/1.1_goals}
+\subsection{Problems}
+\input{slides/1.2.0_pipe}
+\input{slides/1.2_problems}
+\subsection{Guidelines}
+\input{slides/1.3_guidelines}
+\subsection{Common techniques}
+\input{slides/1.4_tech}
+\subsection{TCP vs UDP}
+\input{slides/1.5_tcp_vs_udp}
+
+\section{Godot Low Level Networking}
+\subsection{Server}
+\input{slides/2.0_godotlow}
+\subsection{Client}
+\input{slides/2.1_godotlow-2}
+\subsection{Problems}
+\input{slides/2.2_lowproblems}
+\subsection{Solutions}
+\input{slides/2.3_lowsolutions}
+
+\addcontentsline{toc}{subsection}{\vspace{2cm}}
+
+\section{Godot High Level Networking}
+\input{slides/3.0.0_godothigh}
+\input{slides/3.0_godothigh}
+\subsection{Server}
+\input{slides/3.1_godothigh}
+\subsection{Client}
+\input{slides/3.2_godothigh}
+\subsection{Optimizations}
+\input{slides/3.3_improv}
+
+\section{Benet module}
+\input{slides/4.0_benet}
+
+\section{End}
+\input{slides/end}
+
+\end{document}

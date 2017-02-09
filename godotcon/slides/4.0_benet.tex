@@ -1,0 +1,14 @@
+\begin{frame}{Benet module}
+
+\begin{itemize}
+    \item Developed to use ENet at full power
+    \item Does not use RPC (unless you want to)
+    \item Allow for \texttt{broadcast} \texttt{send} (to specific client)
+    \item Uses signals to notify of recv packets, clients connect/disconnect
+    \item Allow for unreliable but ordered channels (you don't have to manage time)
+    \item Allows multiple channels
+\end{itemize}
+
+\footnotesize{\textbf{Note}: will likely not be included in Godot, I'm looking to port it to the C API by \textbf{karroffel} and \textbf{bojidar-bg} when it's ready}
+
+\end{frame}

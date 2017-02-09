@@ -1,0 +1,19 @@
+\begin{frame}{Godot High Level Networking II}
+
+Node network modes:
+
+\begin{itemize}
+    \item Master: This node is considered master (this instance owns it)
+    \item Slave: This node is considered slave (someone else owns it)
+\end{itemize}
+
+RPC/RSET modes:
+
+\begin{itemize}
+    \item sync: called both locally and over network
+    \item remote: called only remotely (no matter the owner)
+    \item slave: the function will be called only on slave nodes
+    \item master: the function will be called only on the master node
+\end{itemize}
+
+\end{frame}

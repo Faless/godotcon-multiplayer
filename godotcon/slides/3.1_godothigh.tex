@@ -1,0 +1,26 @@
+\begin{frame}[fragile]{Server}
+
+\begin{lstlisting}
+func create_server():
+	set_network_mode(NETWORK_MODE_MASTER)
+	var host = NetworkedMultiplayerENet.new()
+	host.create_server(4321, 4)
+	get_tree().set_network_peer(host)
+
+var time = 0
+func update_remote_state(tick): # Tick is ideally 20/30 FPS (ie. 0.05/0.03)
+	var state = []
+	# Parse the game state
+	# ... eg.
+	state.append(get_pos())
+	state.append(get_linear_velocity())
+	# Send RPC, called on the node with the SAME PATH in the client
+	time += 1
+	rpc_unreliable("update_state", time, tick, state)
+
+slave func update_state(time, tick, state):
+	# ... (see next slide)
+
+\end{lstlisting}
+ 
+\end{frame}

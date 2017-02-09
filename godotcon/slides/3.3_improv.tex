@@ -1,0 +1,13 @@
+\begin{frame}{Optimizations?}
+
+\begin{itemize}
+    \item Try to bundle homogeneous data in the same state update (but make sure the maximum packet size will be less than 400-450 bytes, or it might get dropped).
+    \item Optimize your state update! (see note, eg. boolean can be 1 byte instead of 4)
+    \item Use prediction! \\
+    \footnotesize{Instead of interpolating \texttt{recv\_pos} and \texttt{recv\_vel}, interpolate to \texttt{recv\_pos + recv\_vel * tick} , and keep predicting till next frame}
+\end{itemize}
+
+
+\href{http://docs.godotengine.org/en/stable/reference/binary_serialization_api.html}{\tiny{\textbf{Note}: http://docs.godotengine.org/en/stable/reference/binary\_serialization\_api.html}}
+
+\end{frame}

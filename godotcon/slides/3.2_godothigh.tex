@@ -1,0 +1,29 @@
+\begin{frame}[fragile]{Client}
+    
+\begin{lstlisting}
+func create_client():
+	set_network_mode(NETWORK_MODE_SLAVE)
+	var client = NetworkedMultiplayerENet.new()
+	client.create_client("127.0.0.1", 4321)
+	get_tree().set_network_peer(client)
+
+var last_time = 0
+slave func update_state(time, tick, state):
+	# Handle wrap-around, see rfc1185 as reference
+	if last_time >= time: # Out of order packet... drop
+		return
+	last_time = time
+	# Handle state update here eg. tween this object
+	get_node("Tween").stop_all()
+	get_node("Tween").interpolate_method(self, "set_pos", 
+                                        get_pos(), state[0]], tick,
+                                        Tween.TRANS_LINEAR, Tween.EASE_IN)
+	get_node("Tween").interpolate_method(self, "set_linear_velocity", 
+                                        get_linear_velocity(), state[1], tick, 
+                                        Tween.TRANS_LINEAR, Tween.EASE_IN)
+	get_node("Tween").start()
+\end{lstlisting}
+
+\footnotesize{\textbf{Note}: the node that makes the RPC MUST have the same node path for in both server and client for this to work}
+    
+\end{frame}

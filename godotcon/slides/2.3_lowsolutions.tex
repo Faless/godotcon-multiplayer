@@ -1,0 +1,12 @@
+\frame{\frametitle{Some solutions}
+
+\begin{itemize}
+\item Have the client sends some \textbf{ping packet}, if a ping is \textbf{not received} by the server for \textbf{more than X seconds}, the client is considered \textbf{disconnected}
+\item Send and additional \textbf{time} value with packets you want to be ordered.
+    \textbf{Keep} the \textbf{last received} time, if you receive a \textbf{lower time}, \textbf{drop it}. (see wrap)
+\item Have the two parties add sequence numbers to pacekets and \textbf{send acknowledgment} of received data. \textbf{Keep a queue} of last sent/received packets. Stop sending until you receive an ack for the lowest missing packet if the new packet has a sequence number higher than the lowsest plus the ack window size. Reorder received packets... \textbf{mess}!
+\end{itemize}
+
+\footnotesize{\textbf{Note:} have a look at \emph{var2bytes} and \emph{bytes2var}}
+
+}
