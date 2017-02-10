@@ -16,7 +16,7 @@ slave func update_state(time, tick, state):
 	# Handle state update here eg. tween this object
 	get_node("Tween").stop_all()
 	get_node("Tween").interpolate_method(self, "set_pos", 
-                                        get_pos(), state[0]], tick,
+                                        get_pos(), state[0], tick,
                                         Tween.TRANS_LINEAR, Tween.EASE_IN)
 	get_node("Tween").interpolate_method(self, "set_linear_velocity", 
                                         get_linear_velocity(), state[1], tick, 
